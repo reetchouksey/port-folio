@@ -273,6 +273,75 @@ body {
   scroll-behavior: smooth;
 }
 
+/* Dynamic viewport-height utilities — fall back to vh for browsers
+   that don't yet support svh/dvh (very few in 2026). Using svh stops
+   the page from shifting whenever Android Chrome shows/hides its URL
+   bar, which was the main cause of mid-scroll layout judder. */
+.min-h-svh {
+  min-height: 100vh;
+  min-height: 100svh;
+}
+.h-svh {
+  height: 100vh;
+  height: 100svh;
+}
+.min-h-dvh {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+.h-dvh {
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* Safe-area padding for notched / pill-cutout phones (iOS, Pixel, etc). */
+.pt-safe { padding-top: env(safe-area-inset-top); }
+.pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+.px-safe {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* On touch / small devices, neuter the most expensive paints
+   (heavy backdrop-filter blurs and large radial gradients) so the
+   GPU has headroom for the scroll itself. backdrop-filter is by far
+   the most expensive effect on Android Chrome/Samsung Internet. */
+@media (max-width: 768px), (hover: none) and (pointer: coarse) {
+  .glass,
+  .glass-strong,
+  .pill,
+  .btn-ghost {
+    backdrop-filter: blur(6px) !important;
+    -webkit-backdrop-filter: blur(6px) !important;
+  }
+  /* Drop the heaviest hero ambient blobs further on phones. */
+  .aurora {
+    filter: blur(40px);
+  }
+  /* Keep tilt cards from forcing extra GPU layers on phones. */
+  .tilt-card {
+    perspective: none;
+    transform-style: flat;
+    will-change: auto;
+  }
+}
+
+/* Tap target / tap highlight hygiene for Android. */
+@media (hover: none) and (pointer: coarse) {
+  a,
+  button,
+  [role="button"],
+  [data-cursor="hover"] {
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* Disable hover-only translate animations that cause sticky-looking
+     transforms after a tap on touch devices. */
+  .hover\:-translate-y-0\.5:hover,
+  .hover\:-translate-y-1:hover {
+    transform: none !important;
+  }
+}
+
 /* When a room is rendered over the scrapbook paper, lift glass-card opacity so
    they read clearly against the textured cream paper and feel like clipped
    article cards on a journal page. */

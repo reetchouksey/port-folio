@@ -19,17 +19,25 @@ export default function useSmoothScroll() {
     const reduced =
       window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
 
+    const isTouch =
+      window.matchMedia?.("(hover: none) and (pointer: coarse)").matches ?? false;
+
     const lenis = new Lenis({
-      duration: 1.05,
+      // Slightly snappier on touch so flicks feel responsive, smoother on
+      // mouse/trackpad where users expect glide.
+      duration: isTouch ? 0.9 : 1.05,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // smooth-out
       smoothWheel: true,
-      // touch-action 'pan-y' on the body still lets the browser handle gesture,
-      // but Lenis layers gentle easing on top for a premium feel.
-      smoothTouch: false, // keep native touch momentum on phones; it's already great
-      touchMultiplier: 1.4,
+      // On Android Chrome and Samsung Internet, native touch scroll can feel
+      // uneven on heavy pages — Lenis evens it out with a small lerp. iOS
+      // Safari already has world-class momentum, so we lean lighter there.
+      smoothTouch: isTouch,
+      touchMultiplier: 1.6,
       wheelMultiplier: 1,
       autoResize: true,
-      lerp: reduced ? 1 : 0.12, // 1 = instant when motion-reduced
+      lerp: reduced ? 1 : isTouch ? 0.16 : 0.12,
+      syncTouch: isTouch,
+      syncTouchLerp: 0.075,
     });
 
     let rafId;

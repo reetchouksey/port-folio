@@ -60,7 +60,7 @@ export default function App() {
   const RoomComponent = activeRoom ? ROOMS[activeRoom] : null;
 
   return (
-    <div className="relative min-h-screen overflow-x-clip">
+    <div className="relative min-h-svh overflow-x-clip">
       <CursorFollower />
       <AnimatePresence>{!booted && <Loader key="loader" />}</AnimatePresence>
 

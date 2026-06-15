@@ -44,7 +44,7 @@ export default function Navbar({ onNavigate, active, onOpenResume }) {
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed top-3 inset-x-0 z-50 flex justify-center px-3 sm:px-4 pointer-events-none"
+      className="fixed top-3 inset-x-0 z-50 flex justify-center px-3 sm:px-4 pointer-events-none pt-safe"
     >
       <div className="w-full max-w-5xl pointer-events-auto">
         <nav

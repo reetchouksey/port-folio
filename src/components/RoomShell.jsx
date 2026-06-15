@@ -13,7 +13,7 @@ export default function RoomShell({ room, onClose, onNavigate, children }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.4 }}
-      className="fixed inset-0 z-[60] overflow-hidden"
+      className="fixed inset-0 z-[60] overflow-hidden h-dvh"
     >
       {/* Scrapbook / journal-page backdrop */}
       <motion.div

@@ -19,7 +19,7 @@ export default function Hero({ onEnterRoom, onOpenResume }) {
   return (
     <section
       id="home"
-      className="relative min-h-screen w-full pt-20 sm:pt-24 pb-10 sm:pb-12 px-4 sm:px-6 lg:px-10 overflow-hidden"
+      className="relative min-h-svh w-full pt-20 sm:pt-24 pb-10 sm:pb-12 px-4 sm:px-6 lg:px-10 overflow-hidden"
     >
       {/* Soft warm wash */}
       <div className="absolute inset-0 -z-0 pointer-events-none">

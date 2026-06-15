@@ -19,7 +19,7 @@ export default function Projects() {
   const [active, setActive] = useState(null);
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-10 sm:space-y-12">
       <motion.div
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
@@ -30,16 +30,16 @@ export default function Projects() {
           <Laptop className="h-3.5 w-3.5" />
           Garage
         </span>
-        <h2 className="font-display text-4xl sm:text-5xl font-extrabold tracking-tight text-ink-900">
+        <h2 className="font-display text-[clamp(28px,8vw,48px)] sm:text-5xl font-extrabold tracking-tight text-ink-900 leading-[1.05]">
           Things I&apos;ve <span className="gradient-text">built</span>
         </h2>
-        <p className="room-intro text-ink-600 max-w-2xl">
+        <p className="room-intro text-ink-600 max-w-2xl text-[15px] sm:text-base">
           A selection of projects where I shaped the frontend — from idea to
           deployed UI. Click any card for the full story.
         </p>
       </motion.div>
 
-      <div className="grid sm:grid-cols-2 gap-5">
+      <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
         {projects.map((p, i) => (
           <ProjectCard
             key={p.title}
@@ -61,7 +61,12 @@ export default function Projects() {
 
 function ProjectCard({ project, index, onOpen }) {
   const tiltRef = useRef(null);
+  const isFinePointer =
+    typeof window !== "undefined" &&
+    window.matchMedia?.("(hover: hover) and (pointer: fine)").matches;
+
   const handleMove = (e) => {
+    if (!isFinePointer) return;
     const el = tiltRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
@@ -70,6 +75,7 @@ function ProjectCard({ project, index, onOpen }) {
     el.style.transform = `perspective(900px) rotateX(${y * -6}deg) rotateY(${x * 8}deg) translateY(-4px)`;
   };
   const handleLeave = () => {
+    if (!isFinePointer) return;
     const el = tiltRef.current;
     if (!el) return;
     el.style.transform =
@@ -90,7 +96,7 @@ function ProjectCard({ project, index, onOpen }) {
       ref={tiltRef}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
-      className="text-left w-full glass rounded-3xl p-6 hover:shadow-soft transition-all tilt-card relative overflow-hidden"
+      className="text-left w-full glass rounded-2xl sm:rounded-3xl p-4 sm:p-6 hover:shadow-soft transition-all tilt-card relative overflow-hidden"
       style={{ transition: "transform 0.25s ease, box-shadow 0.25s ease" }}
     >
       <div
@@ -107,7 +113,7 @@ function ProjectCard({ project, index, onOpen }) {
             <div className="ml-2 flex-1 h-5 rounded-md bg-ink-100/60" />
           </div>
           <div
-            className={`relative h-40 bg-gradient-to-br ${project.color} flex items-center justify-center text-white`}
+            className={`relative h-32 sm:h-40 bg-gradient-to-br ${project.color} flex items-center justify-center text-white`}
           >
             <div className="absolute inset-0 bg-noise opacity-10" />
             <div className="relative text-center">
@@ -197,11 +203,11 @@ function ProjectCard({ project, index, onOpen }) {
         rel="noreferrer"
         onClick={(e) => e.stopPropagation()}
         data-cursor="hover"
-        className="mt-2 group inline-flex items-center gap-1.5 max-w-full px-3 py-1.5 rounded-full bg-cream-50/80 border border-ink-200/60 text-[11px] font-mono text-ink-700 hover:text-ink-900 hover:bg-cream-50 transition"
+        className="mt-2 group flex items-center gap-1.5 w-full max-w-full px-3 py-1.5 rounded-full bg-cream-50/80 border border-ink-200/60 text-[11px] font-mono text-ink-700 hover:text-ink-900 hover:bg-cream-50 transition"
       >
         <ExternalLink className="h-3 w-3 shrink-0 text-ink-500 group-hover:text-ink-900" />
-        <span className="truncate">{project.demo.replace(/^https?:\/\//, "")}</span>
-        <span className="ml-auto text-ink-400 group-hover:text-ink-900 shrink-0">↗</span>
+        <span className="truncate min-w-0 flex-1">{project.demo.replace(/^https?:\/\//, "")}</span>
+        <span className="text-ink-400 group-hover:text-ink-900 shrink-0">↗</span>
       </a>
     )}
     </motion.div>
