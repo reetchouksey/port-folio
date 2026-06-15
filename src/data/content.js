@@ -102,7 +102,7 @@ export const projects = [
     ],
     color: "from-amber-400 via-amber-700 to-amber-950",
     accent: "bg-amber-100",
-    demo: "https://netflix-clone-reet-choukseys-projects.vercel.app",
+    demo: "https://netflix-clone-eight-tawny-75.vercel.app/",
     code: "#",
   },
   {
@@ -142,7 +142,7 @@ export const projects = [
     ],
     color: "from-stone-400 via-stone-700 to-stone-950",
     accent: "bg-stone-200",
-    demo: "https://dashboard-smoky-phi-8aws7vf3fa.vercel.app",
+    demo: "https://dashboard-smoky-phi-8aws7vf3fa.vercel.app/",
     code: "#",
   },
   {
@@ -161,7 +161,7 @@ export const projects = [
     ],
     color: "from-yellow-700 via-amber-900 to-stone-900",
     accent: "bg-yellow-100",
-    demo: "https://elite-constructions-git-main-reet-choukseys-projects.vercel.app/",
+    demo: "https://elite-constructions-three.vercel.app/",
     code: "#",
   },
 ];
