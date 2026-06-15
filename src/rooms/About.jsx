@@ -18,22 +18,22 @@ const fadeUp = {
 
 export default function About({ onOpenResume }) {
   return (
-    <div className="space-y-12">
+    <div className="space-y-10 sm:space-y-12">
       <motion.div {...fadeUp} className="space-y-3">
         <span className="pill">
           <BookOpen className="h-3.5 w-3.5" />
           Living Room
         </span>
-        <h2 className="font-display text-4xl sm:text-5xl font-extrabold tracking-tight text-ink-900">
+        <h2 className="font-display text-[clamp(28px,8vw,48px)] sm:text-5xl font-extrabold tracking-tight text-ink-900 leading-[1.05]">
           A bit about <span className="gradient-text">me</span>
         </h2>
-        <p className="room-intro text-ink-600 max-w-2xl">
+        <p className="room-intro text-ink-600 max-w-2xl text-[15px] sm:text-base">
           Welcome to my living room — pull up a chair. Here&apos;s a glimpse of who I
           am, where I&apos;m from, and what I love to build.
         </p>
       </motion.div>
 
-      <div className="grid lg:grid-cols-3 gap-5">
+      <div className="grid lg:grid-cols-3 gap-4 sm:gap-5">
         <motion.div
           {...fadeUp}
           transition={{ ...fadeUp.transition, delay: 0.05 }}
@@ -88,7 +88,7 @@ export default function About({ onOpenResume }) {
           <h3 className="text-xl font-semibold text-ink-900">Journey</h3>
           <span className="text-xs text-ink-400">Experience & Education</span>
         </div>
-        <div className="relative grid lg:grid-cols-2 gap-5">
+        <div className="relative grid lg:grid-cols-2 gap-4 sm:gap-5">
           {experience.map((e, i) => (
             <TimelineCard
               key={i}
@@ -122,7 +122,7 @@ export default function About({ onOpenResume }) {
             <Sparkles className="h-3 w-3" /> Services
           </span>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {services.map((s, i) => (
             <motion.div
               key={s.title}

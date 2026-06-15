@@ -127,13 +127,14 @@ export default function Navbar({ onNavigate, active, onOpenResume }) {
               type="button"
               onClick={onOpenResume}
               data-cursor="hover"
-              className="hidden md:inline-flex items-center gap-1.5 pl-2.5 pr-3 py-1.5 rounded-full text-white text-[12px] font-medium hover:-translate-y-0.5 transition-transform shadow-soft whitespace-nowrap"
+              className="inline-flex items-center gap-1.5 pl-2.5 pr-3 py-1.5 rounded-full text-white text-[12px] font-medium hover:-translate-y-0.5 transition-transform shadow-soft whitespace-nowrap"
               style={{
                 background:
                   "linear-gradient(120deg, #1a1308 0%, #3b2c14 50%, #1a1308 100%)",
                 boxShadow:
                   "0 1px 0 0 rgba(255,255,255,0.18) inset, 0 6px 18px -6px rgba(26, 19, 8, 0.55)",
               }}
+              aria-label="View CV"
             >
               <Download className="h-3.5 w-3.5" />
               <span>CV</span>
@@ -249,7 +250,7 @@ export default function Navbar({ onNavigate, active, onOpenResume }) {
                   <button
                     type="button"
                     onClick={onOpenResume}
-                    className="md:hidden flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-2xl bg-ink-900 text-white text-xs font-medium"
+                    className="hidden flex-1 items-center justify-center gap-1.5 px-3 py-2 rounded-2xl bg-ink-900 text-white text-xs font-medium"
                   >
                     <Download className="h-3.5 w-3.5" />
                     CV

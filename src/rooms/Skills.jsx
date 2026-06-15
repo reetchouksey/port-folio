@@ -27,7 +27,7 @@ const ICON_MAP = {
 
 export default function Skills() {
   return (
-    <div className="space-y-12">
+    <div className="space-y-10 sm:space-y-12">
       <motion.div
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
@@ -38,10 +38,10 @@ export default function Skills() {
           <MonitorSmartphone className="h-3.5 w-3.5" />
           Office Room
         </span>
-        <h2 className="font-display text-4xl sm:text-5xl font-extrabold tracking-tight text-ink-900">
+        <h2 className="font-display text-[clamp(28px,8vw,48px)] sm:text-5xl font-extrabold tracking-tight text-ink-900 leading-[1.05]">
           The toolbox <span className="gradient-text">I work with</span>
         </h2>
-        <p className="room-intro text-ink-600 max-w-2xl">
+        <p className="room-intro text-ink-600 max-w-2xl text-[15px] sm:text-base">
           A curated stack I use to ship modern, responsive, and delightful
           interfaces — from the basics to the build tools I love.
         </p>
@@ -70,7 +70,7 @@ export default function Skills() {
               />
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-3.5">
               {group.items.map((s, i) => (
                 <SkillCard key={s.name} skill={s} delay={i * 0.04} />
               ))}
@@ -92,19 +92,19 @@ function SkillCard({ skill, delay }) {
       transition={{ duration: 0.4, delay }}
       whileHover={{ y: -4 }}
       data-cursor="hover"
-      className="glass rounded-2xl p-4 group cursor-default"
+      className="glass rounded-2xl p-3 sm:p-4 group cursor-default"
     >
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2.5 sm:gap-3">
         <div
-          className={`h-10 w-10 rounded-xl ${meta.bg} text-lg flex items-center justify-center transition-transform group-hover:scale-110 group-hover:rotate-6`}
+          className={`h-9 w-9 sm:h-10 sm:w-10 rounded-xl ${meta.bg} text-base sm:text-lg flex items-center justify-center transition-transform group-hover:scale-110 group-hover:rotate-6 shrink-0`}
         >
           {meta.ic}
         </div>
         <div className="flex-1 min-w-0">
-          <div className="text-sm font-semibold text-ink-900 truncate">
+          <div className="text-[13px] sm:text-sm font-semibold text-ink-900 leading-tight break-words">
             {skill.name}
           </div>
-          <div className="text-[11px] text-ink-500">{skill.level}% comfort</div>
+          <div className="text-[10.5px] sm:text-[11px] text-ink-500 mt-0.5">{skill.level}% comfort</div>
         </div>
       </div>
       <div className="mt-3 h-1.5 w-full rounded-full bg-ink-100 overflow-hidden">

@@ -33,11 +33,11 @@ export default function Hero({ onEnterRoom, onOpenResume }) {
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 1.3 }}
-        className="relative max-w-7xl mx-auto flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.28em] text-ink-500 mb-6"
+        className="relative max-w-7xl mx-auto flex items-center justify-between gap-2 text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.24em] sm:tracking-[0.28em] text-ink-500 mb-5 sm:mb-6"
       >
         <span className="hidden sm:inline">Vol. 01 · Frontend Issue</span>
         <span className="hidden sm:inline">Bhopal · India</span>
-        <span>2026 — Spring Edition</span>
+        <span className="truncate">2026 — Spring Edition</span>
       </motion.div>
 
       <div className="relative max-w-7xl mx-auto">
@@ -100,28 +100,28 @@ export default function Hero({ onEnterRoom, onOpenResume }) {
                 palettes — turning ideas into interfaces people enjoy.
               </p>
 
-              <div className="flex flex-wrap gap-3 pt-1">
+              <div className="flex flex-wrap gap-2.5 sm:gap-3 pt-1">
                 <button
                   onClick={() => onEnterRoom("projects")}
-                  className="btn-primary group"
+                  className="btn-primary group flex-1 sm:flex-none justify-center min-w-0"
                   data-cursor="hover"
                 >
-                  <Sparkles className="h-4 w-4" />
-                  Explore the Workspace
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  <Sparkles className="h-4 w-4 shrink-0" />
+                  <span className="truncate">Explore the Workspace</span>
+                  <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
                 </button>
                 <button
                   type="button"
                   onClick={onOpenResume}
                   data-cursor="hover"
-                  className="btn-ghost"
+                  className="btn-ghost shrink-0"
                 >
                   <Download className="h-4 w-4" />
                   CV
                 </button>
               </div>
 
-              <div className="flex flex-wrap gap-x-6 gap-y-2 pt-3 text-sm text-ink-600">
+              <div className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 pt-2 sm:pt-3 text-[13px] sm:text-sm text-ink-600">
                 <span className="inline-flex items-center gap-1.5">
                   <MapPin className="h-3.5 w-3.5" />
                   {profile.location}

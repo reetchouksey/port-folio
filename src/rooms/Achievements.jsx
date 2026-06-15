@@ -8,7 +8,7 @@ const ICONS = [Trophy, Award, Star, Target, Sparkles];
 
 export default function Achievements() {
   return (
-    <div className="space-y-12">
+    <div className="space-y-10 sm:space-y-12">
       <motion.div
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
@@ -19,22 +19,22 @@ export default function Achievements() {
           <Trophy className="h-3.5 w-3.5" />
           Trophy Room
         </span>
-        <h2 className="font-display text-4xl sm:text-5xl font-extrabold tracking-tight text-ink-900">
+        <h2 className="font-display text-[clamp(28px,8vw,48px)] sm:text-5xl font-extrabold tracking-tight text-ink-900 leading-[1.05]">
           Milestones &<span className="gradient-text"> wins</span>
         </h2>
-        <p className="room-intro text-ink-600 max-w-2xl">
+        <p className="room-intro text-ink-600 max-w-2xl text-[15px] sm:text-base">
           A collection of moments that pushed me forward. Every project
           shipped, every bug squashed, every pixel perfected.
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {stats.map((s, i) => (
           <StatCard key={s.label} stat={s} delay={i * 0.06} />
         ))}
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-4">
+      <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
         {achievements.map((a, i) => {
           const Icon = ICONS[i % ICONS.length];
           return (
@@ -64,23 +64,23 @@ export default function Achievements() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="relative overflow-hidden rounded-3xl glass-strong p-8 sm:p-10"
+        className="relative overflow-hidden rounded-3xl glass-strong p-5 sm:p-8 lg:p-10"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-amber-100/60 via-rose-100/40 to-violet-100/40" />
-        <div className="relative grid lg:grid-cols-[1fr_auto] gap-6 items-center">
+        <div className="relative grid lg:grid-cols-[1fr_auto] gap-5 sm:gap-6 items-center">
           <div>
-            <div className="text-xs uppercase tracking-[0.25em] text-ink-500">
+            <div className="text-[11px] sm:text-xs uppercase tracking-[0.25em] text-ink-500">
               Certificate of Persistence
             </div>
-            <h3 className="font-display text-3xl font-bold mt-2 text-ink-900">
+            <h3 className="font-display text-[clamp(22px,6vw,30px)] sm:text-3xl font-bold mt-2 text-ink-900 leading-tight">
               Always learning, always shipping.
             </h3>
-            <p className="mt-2 text-ink-600 max-w-xl">
+            <p className="mt-2 text-ink-600 max-w-xl text-[14px] sm:text-base">
               Beyond the trophies, what I&apos;m most proud of is the consistency:
               showing up, learning, building, refining — every single day.
             </p>
           </div>
-          <div className="flex sm:flex-col gap-3">
+          <div className="flex flex-wrap sm:flex-col gap-2 sm:gap-3">
             <Badge label="React" />
             <Badge label="Redux" />
             <Badge label="Tailwind" />
@@ -105,11 +105,11 @@ function StatCard({ stat, delay }) {
       transition={{ duration: 0.5, delay }}
       className="glass-card text-center"
     >
-      <div className="font-display text-4xl sm:text-5xl font-extrabold gradient-text">
+      <div className="font-display text-[clamp(28px,9vw,52px)] sm:text-5xl font-extrabold gradient-text leading-none">
         {value}
         {stat.suffix}
       </div>
-      <div className="mt-1 text-sm text-ink-500">{stat.label}</div>
+      <div className="mt-1.5 sm:mt-1 text-[12px] sm:text-sm text-ink-500 leading-tight">{stat.label}</div>
     </motion.div>
   );
 }

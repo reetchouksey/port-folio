@@ -36,7 +36,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-10 sm:space-y-12">
       <motion.div
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
@@ -47,17 +47,17 @@ export default function Contact() {
           <Mail className="h-3.5 w-3.5" />
           Reception
         </span>
-        <h2 className="font-display text-4xl sm:text-5xl font-extrabold tracking-tight text-ink-900">
+        <h2 className="font-display text-[clamp(28px,8vw,48px)] sm:text-5xl font-extrabold tracking-tight text-ink-900 leading-[1.05]">
           Let&apos;s <span className="gradient-text">connect</span>
         </h2>
-        <p className="room-intro text-ink-600 max-w-2xl">
+        <p className="room-intro text-ink-600 max-w-2xl text-[15px] sm:text-base">
           I&apos;m always interested in discussing new opportunities, frontend
           development projects, and innovative ideas. Drop a note — I&apos;ll
           reply soon.
         </p>
       </motion.div>
 
-      <div className="grid lg:grid-cols-5 gap-5">
+      <div className="grid lg:grid-cols-5 gap-4 sm:gap-5">
         {/* Contact info */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -139,7 +139,7 @@ export default function Contact() {
             Tell me about your project or opportunity.
           </p>
 
-          <div className="mt-5 grid sm:grid-cols-2 gap-3">
+          <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Field
               label="Name"
               value={form.name}
@@ -164,13 +164,13 @@ export default function Contact() {
             />
           </div>
 
-          <div className="mt-5 flex items-center justify-between">
-            <div className="text-xs text-ink-400">
+          <div className="mt-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div className="text-[11px] sm:text-xs text-ink-400 break-words">
               Or email me directly at{" "}
               <button
                 type="button"
                 onClick={copyEmail}
-                className="underline underline-offset-2 hover:text-ink-700"
+                className="underline underline-offset-2 hover:text-ink-700 break-all"
               >
                 {profile.email}
               </button>
@@ -179,7 +179,7 @@ export default function Contact() {
               type="submit"
               data-cursor="hover"
               disabled={sent}
-              className="btn-primary disabled:opacity-60"
+              className="btn-primary disabled:opacity-60 w-full sm:w-auto justify-center"
             >
               <Send className="h-4 w-4" />
               {sent ? "Sent!" : "Send Message"}
@@ -250,20 +250,20 @@ function ContactRow({ icon, label, value, href, action }) {
   return (
     <Wrapper
       {...props}
-      className={`flex items-center gap-3 p-3 rounded-2xl bg-white/60 border border-ink-100 ${
+      className={`flex items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-2xl bg-white/60 border border-ink-100 ${
         href ? "hover:bg-white transition" : ""
       }`}
     >
-      <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-emerald-100 to-teal-100 text-emerald-700 inline-flex items-center justify-center">
+      <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-emerald-100 to-teal-100 text-emerald-700 inline-flex items-center justify-center shrink-0">
         {icon}
       </div>
       <div className="flex-1 min-w-0">
         <div className="text-[10px] uppercase tracking-widest text-ink-400">
           {label}
         </div>
-        <div className="text-sm font-medium text-ink-900 truncate">{value}</div>
+        <div className="text-[13px] sm:text-sm font-medium text-ink-900 truncate">{value}</div>
       </div>
-      {action}
+      {action ? <div className="shrink-0">{action}</div> : null}
     </Wrapper>
   );
 }

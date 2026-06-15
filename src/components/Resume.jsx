@@ -194,18 +194,18 @@ export default function Resume({ onClose }) {
 
           <div className="px-5 sm:px-12 pt-10 sm:pt-14 pb-8 sm:pb-14">
             {/* Header */}
-            <header className="border-b-2 border-ink-900 pb-6 mb-8">
+            <header className="border-b-2 border-ink-900 pb-5 sm:pb-6 mb-6 sm:mb-8">
               <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.32em] text-ink-500 mb-2">
                 ⌁ Folio · 2026 · Edition I
               </div>
-              <h1 className="font-display text-[40px] sm:text-[56px] leading-[0.95] font-black text-ink-900 tracking-tight">
+              <h1 className="font-display text-[clamp(30px,9vw,56px)] sm:text-[56px] leading-[0.95] font-black text-ink-900 tracking-tight break-words">
                 {RESUME.name}
               </h1>
-              <div className="mt-2 font-display italic text-lg sm:text-xl text-ink-700">
+              <div className="mt-2 font-display italic text-base sm:text-xl text-ink-700">
                 {RESUME.title}
               </div>
 
-              <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[12.5px] text-ink-600">
+              <div className="mt-4 sm:mt-5 flex flex-wrap gap-x-4 sm:gap-x-5 gap-y-2 text-[11.5px] sm:text-[12.5px] text-ink-600">
                 <span className="inline-flex items-center gap-1.5">
                   <MapPin className="h-3.5 w-3.5" />
                   {RESUME.location}
@@ -251,13 +251,13 @@ export default function Resume({ onClose }) {
                     key={i}
                     className="flex flex-wrap items-baseline gap-x-3 gap-y-1"
                   >
-                    <span className="font-display text-lg font-semibold text-ink-900">
+                    <span className="font-display text-base sm:text-lg font-semibold text-ink-900">
                       {e.school}
                     </span>
-                    <span className="text-[14px] text-ink-700">
+                    <span className="text-[13px] sm:text-[14px] text-ink-700">
                       — {e.degree}
                     </span>
-                    <span className="ml-auto font-mono text-[11px] uppercase tracking-[0.18em] text-ink-500">
+                    <span className="sm:ml-auto font-mono text-[11px] uppercase tracking-[0.18em] text-ink-500 w-full sm:w-auto">
                       {e.period}
                     </span>
                   </li>
@@ -267,13 +267,13 @@ export default function Resume({ onClose }) {
 
             {/* Skills */}
             <Section number="03" title="Skills">
-              <dl className="grid sm:grid-cols-[140px_1fr] gap-y-3 gap-x-6">
+              <dl className="grid sm:grid-cols-[140px_1fr] gap-y-3 sm:gap-y-3 gap-x-6">
                 {RESUME.skills.map((s, i) => (
                   <div key={i} className="contents">
-                    <dt className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-500 sm:pt-0.5">
+                    <dt className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-500 sm:pt-0.5 mb-1 sm:mb-0">
                       {s.label}
                     </dt>
-                    <dd className="text-[14px] text-ink-800 leading-relaxed">
+                    <dd className="text-[13.5px] sm:text-[14px] text-ink-800 leading-relaxed mb-2 sm:mb-0">
                       {s.items}
                     </dd>
                   </div>
@@ -286,13 +286,13 @@ export default function Resume({ onClose }) {
               {RESUME.experience.map((x, i) => (
                 <div key={i} className="space-y-3">
                   <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                    <span className="font-display text-lg font-semibold text-ink-900">
+                    <span className="font-display text-base sm:text-lg font-semibold text-ink-900">
                       {x.company}
                     </span>
-                    <span className="text-[14px] italic text-ink-700">
+                    <span className="text-[13px] sm:text-[14px] italic text-ink-700">
                       — {x.role}
                     </span>
-                    <span className="ml-auto font-mono text-[11px] uppercase tracking-[0.18em] text-ink-500">
+                    <span className="sm:ml-auto font-mono text-[11px] uppercase tracking-[0.18em] text-ink-500 w-full sm:w-auto">
                       {x.period}
                     </span>
                   </div>
@@ -307,7 +307,7 @@ export default function Resume({ onClose }) {
 
             {/* Projects */}
             <Section number="05" title="Projects">
-              <div className="grid sm:grid-cols-2 gap-x-8 gap-y-6">
+              <div className="grid sm:grid-cols-2 gap-x-6 sm:gap-x-8 gap-y-5 sm:gap-y-6">
                 {RESUME.projects.map((p, i) => (
                   <div key={i}>
                     <div className="flex items-baseline gap-2 mb-2">
@@ -344,12 +344,12 @@ export default function Resume({ onClose }) {
 
 function Section({ number, title, children }) {
   return (
-    <section className="mb-9">
-      <div className="flex items-baseline gap-3 mb-4">
+    <section className="mb-7 sm:mb-9">
+      <div className="flex items-baseline gap-3 mb-3 sm:mb-4">
         <span className="font-mono text-[11px] uppercase tracking-[0.32em] text-ink-500">
           {number}
         </span>
-        <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink-900 tracking-tight">
+        <h2 className="font-display text-xl sm:text-3xl font-bold text-ink-900 tracking-tight">
           {title}
         </h2>
         <span className="flex-1 h-px bg-ink-300/50" />

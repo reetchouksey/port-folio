@@ -7,7 +7,7 @@ import { profile, rooms } from "../data/content.js";
 export default function EditorialFooter({ onNavigate }) {
   return (
     <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 mt-16 lg:mt-24 mb-10">
-      <div className="grid lg:grid-cols-12 gap-6">
+      <div className="grid lg:grid-cols-12 gap-4 sm:gap-6">
         {/* Big "INDEX" panel */}
         <div className="lg:col-span-7 swatch p-5 sm:p-10 bg-cream-100">
           <div className="flex items-center gap-3 mb-6">
@@ -34,27 +34,27 @@ export default function EditorialFooter({ onNavigate }) {
                 <button
                   onClick={() => onNavigate(r.id)}
                   data-cursor="hover"
-                  className="w-full flex items-center justify-between gap-4 py-4 text-left group"
+                  className="w-full flex items-center justify-between gap-3 sm:gap-4 py-3.5 sm:py-4 text-left group"
                 >
-                  <div className="flex items-center gap-4 min-w-0">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-500 w-8">
+                  <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                    <span className="hidden sm:inline-block font-mono text-[10px] uppercase tracking-[0.22em] text-ink-500 w-8 shrink-0">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span
                       className="inline-flex items-center justify-center shrink-0"
                       style={{ color: r.color }}
                     >
-                      <RoomGlyph roomId={r.id} size={22} />
+                      <RoomGlyph roomId={r.id} size={20} />
                     </span>
-                    <span className="font-display text-xl sm:text-2xl font-semibold text-ink-900 truncate">
+                    <span className="font-display text-lg sm:text-2xl font-semibold text-ink-900 truncate">
                       {r.label}
                     </span>
-                    <span className="hidden sm:inline text-[12px] text-ink-500">
+                    <span className="hidden md:inline text-[12px] text-ink-500 truncate">
                       — {r.sub}
                     </span>
                   </div>
-                  <span className="inline-flex items-center gap-1 text-[12px] font-mono uppercase tracking-widest text-ink-500 group-hover:text-ink-900 transition">
-                    Enter
+                  <span className="inline-flex items-center gap-1 text-[11px] sm:text-[12px] font-mono uppercase tracking-widest text-ink-500 group-hover:text-ink-900 transition shrink-0">
+                    <span>Enter</span>
                     <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:rotate-45" />
                   </span>
                 </button>
@@ -64,8 +64,8 @@ export default function EditorialFooter({ onNavigate }) {
         </div>
 
         {/* Right column: credits + colophon */}
-        <div className="lg:col-span-5 grid gap-4">
-          <div className="swatch p-6 bg-[linear-gradient(135deg,#1a1308_0%,#3b2c14_100%)] text-cream-100">
+        <div className="lg:col-span-5 grid gap-3 sm:gap-4">
+          <div className="swatch p-5 sm:p-6 bg-[linear-gradient(135deg,#1a1308_0%,#3b2c14_100%)] text-cream-100">
             <span className="font-mono text-[10px] uppercase tracking-[0.32em] opacity-70">
               ⌁ Get in touch
             </span>
@@ -108,7 +108,7 @@ export default function EditorialFooter({ onNavigate }) {
             </div>
           </div>
 
-          <div className="swatch p-6 bg-[linear-gradient(135deg,#d4a04c_0%,#c98a35_100%)] text-ink-900">
+          <div className="swatch p-5 sm:p-6 bg-[linear-gradient(135deg,#d4a04c_0%,#c98a35_100%)] text-ink-900">
             <span className="font-mono text-[10px] uppercase tracking-[0.32em] opacity-80">
               ⌁ Colophon
             </span>
