@@ -1,5 +1,5 @@
 import { useEffect, useState, lazy, Suspense } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import Navbar from "./components/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
 import MoodBoard from "./components/MoodBoard.jsx";
@@ -8,6 +8,7 @@ import RoomShell from "./components/RoomShell.jsx";
 import CursorFollower from "./components/CursorFollower.jsx";
 import Loader from "./components/Loader.jsx";
 import Resume from "./components/Resume.jsx";
+import useSmoothScroll from "./hooks/useSmoothScroll.js";
 import { rooms } from "./data/content.js";
 
 const About = lazy(() => import("./rooms/About.jsx"));
@@ -28,6 +29,8 @@ export default function App() {
   const [activeRoom, setActiveRoom] = useState(null);
   const [booted, setBooted] = useState(false);
   const [resumeOpen, setResumeOpen] = useState(false);
+
+  useSmoothScroll();
 
   useEffect(() => {
     const t = setTimeout(() => setBooted(true), 1100);
@@ -57,7 +60,7 @@ export default function App() {
   const RoomComponent = activeRoom ? ROOMS[activeRoom] : null;
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden">
+    <div className="relative min-h-screen overflow-x-clip">
       <CursorFollower />
       <AnimatePresence>{!booted && <Loader key="loader" />}</AnimatePresence>
 

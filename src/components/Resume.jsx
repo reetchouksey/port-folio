@@ -119,12 +119,13 @@ export default function Resume({ onClose }) {
       />
 
       {/* Toolbar (top, floating) */}
-      <div className="absolute top-4 sm:top-6 inset-x-0 px-4 sm:px-6 z-10 flex items-center justify-between gap-3 print:hidden">
-        <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cream-50/95 border border-ink-200/60 text-[12px] font-medium text-ink-700 shadow-soft">
+      <div className="absolute top-4 sm:top-6 inset-x-0 px-3 sm:px-6 z-10 flex flex-wrap items-center justify-between gap-2 sm:gap-3 print:hidden">
+        <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cream-50/95 border border-ink-200/60 text-[11px] sm:text-[12px] font-medium text-ink-700 shadow-soft">
           <span className="font-mono uppercase tracking-[0.28em] text-[10px] text-ink-500">
             ⌁ Folio
           </span>
-          Curriculum Vitae
+          <span className="hidden sm:inline">Curriculum Vitae</span>
+          <span className="sm:hidden">CV</span>
         </span>
         <div className="flex items-center gap-2">
           <a
@@ -157,7 +158,10 @@ export default function Resume({ onClose }) {
       </div>
 
       {/* Paper sheet */}
-      <div className="absolute inset-0 overflow-y-auto pt-20 sm:pt-24 pb-10">
+      <div
+        className="absolute inset-0 overflow-y-auto overflow-x-hidden pt-20 sm:pt-24 pb-10 smooth-scroll"
+        data-lenis-prevent
+      >
         <motion.article
           initial={{ opacity: 0, y: 30, scale: 0.97 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -188,7 +192,7 @@ export default function Resume({ onClose }) {
             }}
           />
 
-          <div className="px-7 sm:px-12 pt-12 sm:pt-14 pb-10 sm:pb-14">
+          <div className="px-5 sm:px-12 pt-10 sm:pt-14 pb-8 sm:pb-14">
             {/* Header */}
             <header className="border-b-2 border-ink-900 pb-6 mb-8">
               <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.32em] text-ink-500 mb-2">

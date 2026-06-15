@@ -47,13 +47,13 @@ const SWATCHES = [
 
 export default function MoodBoard() {
   return (
-    <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 mt-16 lg:mt-24">
-      <div className="flex items-end justify-between mb-6 gap-4">
-        <div>
-          <div className="font-mono text-[11px] uppercase tracking-[0.32em] text-ink-500">
+    <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 mt-12 sm:mt-16 lg:mt-24">
+      <div className="flex flex-wrap items-end justify-between mb-5 sm:mb-6 gap-4">
+        <div className="min-w-0">
+          <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.32em] text-ink-500">
             ⌁ Material Stack — A Designer&apos;s Mood Board
           </div>
-          <h2 className="font-display text-2xl sm:text-3xl font-semibold text-ink-900 mt-2 leading-tight">
+          <h2 className="font-display text-xl sm:text-3xl font-semibold text-ink-900 mt-2 leading-tight">
             The textures &amp; tools <span className="italic font-normal text-ink-600">I work with</span>.
           </h2>
         </div>
@@ -63,7 +63,7 @@ export default function MoodBoard() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3">
         {SWATCHES.map((s, i) => (
           <motion.div
             key={s.label}

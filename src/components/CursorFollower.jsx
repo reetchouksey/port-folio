@@ -1,12 +1,24 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function CursorFollower() {
   const dot = useRef(null);
   const ring = useRef(null);
   const target = useRef({ x: 0, y: 0 });
   const pos = useRef({ x: 0, y: 0 });
+  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const update = () => setEnabled(mq.matches);
+    update();
+    mq.addEventListener?.("change", update);
+    return () => mq.removeEventListener?.("change", update);
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) return;
+
     const move = (e) => {
       target.current.x = e.clientX;
       target.current.y = e.clientY;
@@ -34,14 +46,16 @@ export default function CursorFollower() {
     };
     raf = requestAnimationFrame(loop);
 
-    window.addEventListener("mousemove", move);
-    window.addEventListener("mouseover", onOver);
+    window.addEventListener("mousemove", move, { passive: true });
+    window.addEventListener("mouseover", onOver, { passive: true });
     return () => {
       window.removeEventListener("mousemove", move);
       window.removeEventListener("mouseover", onOver);
       cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [enabled]);
+
+  if (!enabled) return null;
 
   return (
     <>

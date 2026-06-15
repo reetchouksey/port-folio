@@ -1,6 +1,6 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, Environment, ContactShadows, Sparkles } from "@react-three/drei";
-import { Suspense, useRef, useMemo } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 
 import LivingRoom from "./rooms/LivingRoom.jsx";
@@ -19,19 +19,43 @@ import Reception from "./rooms/Reception.jsx";
  *        [ Reception ]
  */
 export default function HouseScene({ hovered, onHover, onClick }) {
+  const wrapRef = useRef(null);
+  const [visible, setVisible] = useState(true);
+
+  // Pause the Three.js render loop when the canvas is offscreen so it
+  // never competes with the page scroll for CPU/GPU. The IntersectionObserver
+  // is cheap and only fires on visibility changes.
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { rootMargin: "120px 0px", threshold: 0 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <Canvas
-      shadows="percentage"
-      dpr={[1, 2]}
-      camera={{ position: [7.5, 7.5, 9.5], fov: 32 }}
-      gl={{ antialias: true, alpha: true }}
-      onPointerMissed={() => onHover(null)}
-      style={{ background: "transparent" }}
-    >
-      <Suspense fallback={null}>
-        <SceneContents hovered={hovered} onHover={onHover} onClick={onClick} />
-      </Suspense>
-    </Canvas>
+    <div ref={wrapRef} className="relative w-full h-full">
+      <Canvas
+        shadows="percentage"
+        dpr={[1, 1.75]}
+        frameloop={visible ? "always" : "never"}
+        camera={{ position: [7.5, 7.5, 9.5], fov: 32 }}
+        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+        onPointerMissed={() => onHover(null)}
+        style={{
+          background: "transparent",
+          touchAction: "pan-y pinch-zoom",
+        }}
+        className="r3f-passthrough"
+      >
+        <Suspense fallback={null}>
+          <SceneContents hovered={hovered} onHover={onHover} onClick={onClick} />
+        </Suspense>
+      </Canvas>
+    </div>
   );
 }
 
@@ -47,8 +71,8 @@ function SceneContents({ hovered, onHover, onClick }) {
         intensity={1.3}
         color="#ffd28a"
         castShadow
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
+        shadow-mapSize-width={768}
+        shadow-mapSize-height={768}
         shadow-camera-near={0.5}
         shadow-camera-far={30}
         shadow-camera-left={-10}

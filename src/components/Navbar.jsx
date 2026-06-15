@@ -29,7 +29,11 @@ export default function Navbar({ onNavigate, active, onOpenResume }) {
   }, []);
 
   useEffect(() => {
-    document.documentElement.style.overflow = open ? "hidden" : "";
+    if (open) {
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.documentElement.style.overflow = "";
+    }
     return () => {
       document.documentElement.style.overflow = "";
     };

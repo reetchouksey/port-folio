@@ -24,12 +24,26 @@ body {
     radial-gradient(900px 800px at 50% 100%, rgba(122, 132, 66, 0.20), transparent 65%),
     radial-gradient(800px 700px at 100% 100%, rgba(154, 71, 49, 0.22), transparent 65%),
     var(--paper-grain);
-  background-attachment: fixed, fixed, fixed, fixed, fixed;
+  background-attachment: scroll, scroll, scroll, scroll, scroll;
+}
+
+/* Use fixed background only on desktop / pointer devices that can afford it.
+   `background-attachment: fixed` is a major scroll-jank source on touch devices
+   and on lower-end laptops, so we opt-in only for hover-capable, fine pointers. */
+@media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
+  body {
+    background-attachment: fixed, fixed, fixed, fixed, fixed;
+  }
 }
 
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 html,
@@ -42,6 +56,16 @@ body {
   font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
   color: var(--ink);
   overflow-x: hidden;
+  /* Prevent the URL bar from making page scroll feel rubbery when reaching
+     the top/bottom edges, while still allowing normal scroll. */
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* Selection */
@@ -231,6 +255,22 @@ body {
 }
 .no-scrollbar {
   scrollbar-width: none;
+}
+
+/* React-three-fiber sets touch-action: none on its canvas by default, which
+   blocks vertical drag-scroll on mobile when the canvas is in the page flow.
+   Allow vertical / pinch panning so users can drag past the 3D scene. */
+.r3f-passthrough,
+.r3f-passthrough canvas {
+  touch-action: pan-y pinch-zoom !important;
+}
+
+/* Smooth, momentum-friendly scrolling for any inner scroll container
+   (room shell, resume sheet, etc). */
+.smooth-scroll {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
 }
 
 /* When a room is rendered over the scrapbook paper, lift glass-card opacity so

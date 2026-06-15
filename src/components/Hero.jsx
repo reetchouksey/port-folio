@@ -19,13 +19,13 @@ export default function Hero({ onEnterRoom, onOpenResume }) {
   return (
     <section
       id="home"
-      className="relative min-h-screen w-full pt-24 pb-12 px-4 sm:px-6 lg:px-10 overflow-hidden"
+      className="relative min-h-screen w-full pt-20 sm:pt-24 pb-10 sm:pb-12 px-4 sm:px-6 lg:px-10 overflow-hidden"
     >
       {/* Soft warm wash */}
       <div className="absolute inset-0 -z-0 pointer-events-none">
-        <div className="absolute -top-32 -right-20 h-[440px] w-[440px] rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(212,160,76,0.5),transparent_60%)] blur-3xl" />
-        <div className="absolute top-40 -left-20 h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(196,115,79,0.4),transparent_60%)] blur-3xl" />
-        <div className="absolute bottom-0 left-1/3 h-[460px] w-[460px] rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(122,132,66,0.18),transparent_65%)] blur-3xl" />
+        <div className="absolute -top-32 -right-20 h-[300px] w-[300px] sm:h-[440px] sm:w-[440px] rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(212,160,76,0.5),transparent_60%)] blur-3xl" />
+        <div className="absolute top-40 -left-20 h-[260px] w-[260px] sm:h-[400px] sm:w-[400px] rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(196,115,79,0.4),transparent_60%)] blur-3xl" />
+        <div className="absolute bottom-0 left-1/3 h-[320px] w-[320px] sm:h-[460px] sm:w-[460px] rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(122,132,66,0.18),transparent_65%)] blur-3xl" />
       </div>
 
       {/* Magazine top rule */}
@@ -51,7 +51,7 @@ export default function Hero({ onEnterRoom, onOpenResume }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.4, duration: 0.7 }}
-              className="space-y-6"
+              className="space-y-5 sm:space-y-6"
             >
               <div className="flex items-center gap-3">
                 <span className="h-8 w-8 rounded-full bg-ink-900 text-cream-50 inline-flex items-center justify-center font-display text-sm">
@@ -69,7 +69,7 @@ export default function Hero({ onEnterRoom, onOpenResume }) {
                   <span className="text-base">👋</span>
                   <span>Hi, I&apos;m</span>
                 </div>
-                <h1 className="font-display text-[44px] sm:text-[56px] lg:text-[64px] font-semibold tracking-tight leading-[1] text-ink-900">
+                <h1 className="font-display text-[clamp(36px,9vw,64px)] sm:text-[56px] lg:text-[64px] font-semibold tracking-tight leading-[1.02] text-ink-900 break-words">
                   <span className="block">Reet,</span>
                   <span className="block italic font-normal text-ink-700">
                     a frontend
@@ -151,9 +151,9 @@ export default function Hero({ onEnterRoom, onOpenResume }) {
                 <span className="hidden sm:inline">Fig. 01</span>
               </div>
 
-              <div className="relative aspect-[5/4] sm:aspect-[6/5] w-full">
+              <div className="relative aspect-[4/3] sm:aspect-[6/5] w-full">
                 {/* Cream "showroom stage" */}
-                <div className="absolute inset-0 rounded-[2rem] overflow-hidden bg-cream-100 border border-ink-200/60 shadow-soft">
+                <div className="absolute inset-0 rounded-2xl sm:rounded-[2rem] overflow-hidden bg-cream-100 border border-ink-200/60 shadow-soft">
                   <HouseScene
                     hovered={hovered}
                     onHover={setHovered}
@@ -177,7 +177,7 @@ export default function Hero({ onEnterRoom, onOpenResume }) {
                   </div>
 
                   {/* Material swatch room legend */}
-                  <div className="absolute bottom-4 left-4 right-4 flex flex-wrap items-center justify-center gap-1.5">
+                  <div className="absolute bottom-3 left-2 right-2 sm:bottom-4 sm:left-4 sm:right-4 flex flex-wrap items-center justify-center gap-1 sm:gap-1.5">
                     {rooms.map((r) => (
                       <button
                         key={r.id}
@@ -185,7 +185,7 @@ export default function Hero({ onEnterRoom, onOpenResume }) {
                         onMouseLeave={() => setHovered(null)}
                         onClick={() => onEnterRoom(r.id)}
                         data-cursor="hover"
-                        className={`group inline-flex items-center gap-1.5 text-[10.5px] font-medium px-2.5 py-1 rounded-full border transition-all ${
+                        className={`group inline-flex items-center gap-1.5 text-[10px] sm:text-[10.5px] font-medium px-2 py-1 sm:px-2.5 rounded-full border transition-all ${
                           hovered === r.id
                             ? "bg-ink-900 text-cream-50 border-ink-900"
                             : "bg-cream-50/90 text-ink-700 border-ink-200/70 hover:bg-cream-50"
@@ -195,9 +195,9 @@ export default function Hero({ onEnterRoom, onOpenResume }) {
                           className="inline-flex items-center justify-center"
                           style={{ color: hovered === r.id ? "#fde9b8" : r.color }}
                         >
-                          <RoomGlyph roomId={r.id} size={13} />
+                          <RoomGlyph roomId={r.id} size={12} />
                         </span>
-                        {r.sub}
+                        <span className="whitespace-nowrap">{r.sub}</span>
                       </button>
                     ))}
                   </div>
@@ -253,14 +253,14 @@ function BigWordmark() {
   return (
     <div
       aria-hidden="true"
-      className="absolute inset-x-0 -top-4 sm:-top-2 lg:top-2 flex justify-center pointer-events-none select-none z-0"
+      className="absolute inset-x-0 -top-4 sm:-top-2 lg:top-2 flex justify-center pointer-events-none select-none z-0 overflow-hidden"
     >
       <motion.h2
         initial={{ opacity: 0, y: 20, letterSpacing: "0.05em" }}
         animate={{ opacity: 1, y: 0, letterSpacing: "-0.06em" }}
         transition={{ duration: 1.4, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        className="font-display font-black tracking-[-0.06em] leading-[0.85]
-          text-[18vw] sm:text-[16vw] lg:text-[14vw]
+        className="font-display font-black tracking-[-0.06em] leading-[0.85] whitespace-nowrap
+          text-[clamp(64px,16vw,220px)]
           bg-clip-text text-transparent
           bg-[linear-gradient(180deg,rgba(59,44,20,0.18)_0%,rgba(177,92,64,0.16)_50%,rgba(59,44,20,0.06)_100%)]
           drop-shadow-[0_8px_24px_rgba(59,44,20,0.18)]"

@@ -9,14 +9,14 @@ export default function EditorialFooter({ onNavigate }) {
     <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 mt-16 lg:mt-24 mb-10">
       <div className="grid lg:grid-cols-12 gap-6">
         {/* Big "INDEX" panel */}
-        <div className="lg:col-span-7 swatch p-6 sm:p-10 bg-cream-100">
+        <div className="lg:col-span-7 swatch p-5 sm:p-10 bg-cream-100">
           <div className="flex items-center gap-3 mb-6">
             <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-ink-500">
               ⌁ Table of Contents
             </span>
             <span className="h-px flex-1 bg-ink-300/60" />
           </div>
-          <h3 className="font-display text-3xl sm:text-5xl font-semibold tracking-tight text-ink-900 leading-[1.05]">
+          <h3 className="font-display text-[clamp(28px,7vw,52px)] font-semibold tracking-tight text-ink-900 leading-[1.05]">
             Five rooms.
             <br />
             <span className="italic font-normal text-ink-700">

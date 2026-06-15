@@ -54,8 +54,11 @@ export default function RoomShell({ room, onClose, onNavigate, children }) {
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         className="absolute inset-x-0 top-0 bottom-0 flex flex-col pointer-events-none"
       >
-        <div className="relative flex-1 overflow-y-auto pointer-events-auto">
-          <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 pt-24 pb-20">
+        <div
+          className="relative flex-1 overflow-y-auto overflow-x-hidden pointer-events-auto smooth-scroll"
+          data-lenis-prevent
+        >
+          <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-16 sm:pb-20">
             {/* Top bar */}
             <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
               <button
