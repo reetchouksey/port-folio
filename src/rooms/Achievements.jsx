@@ -76,8 +76,11 @@ export default function Achievements() {
               Always learning, always shipping.
             </h3>
             <p className="mt-2 text-ink-600 max-w-xl text-[14px] sm:text-base">
-              Beyond the trophies, what I&apos;m most proud of is the consistency:
-              showing up, learning, building, refining — every single day.
+              Day to day, I build with React, Redux and Tailwind CSS — wiring
+              clean REST APIs into responsive, accessible UIs. Paired with
+              modern AI-assisted tooling like Cursor and Antigravity, and a
+              sharp eye for prompt engineering, I ship polished frontend work
+              faster — with more focus on craft and less on friction.
             </p>
           </div>
           <div className="flex flex-wrap sm:flex-col gap-2 sm:gap-3">
