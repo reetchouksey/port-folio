@@ -5,7 +5,7 @@ export const profile = {
   location: "Bhopal, India",
   availability: "Open to Work",
   experience: "Fresher · Entry-Level",
-  email: "reet.chouksey@example.com",
+  email: "reetchouksey004@gmail.com",
   socials: {
     linkedin: "https://linkedin.com/in/reet-chouksey",
     github: "https://github.com/reetchouksey",
@@ -184,11 +184,11 @@ export const experience = [
 
 export const education = [
   {
-    degree: "Bachelor of Technology (B.Tech)",
-    field: "Computer Science / IT",
-    period: "Graduation",
+    degree: "Bachelor of Computer Applications (BCA)",
+    field: "Computer Applications",
+    period: "Pursuing · Final Year",
     detail:
-      "Focused on software development, web technologies and programming fundamentals.",
+      "Currently pursuing BCA in the last year, focused on software development, web technologies and programming fundamentals.",
   },
 ];
 
