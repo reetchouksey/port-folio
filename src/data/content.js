@@ -221,8 +221,6 @@ export const achievements = [
 export const stats = [
   { label: "Projects Built", value: 8, suffix: "+" },
   { label: "Technologies", value: 14, suffix: "+" },
-  { label: "Components Crafted", value: 120, suffix: "+" },
-  { label: "Cups of Coffee", value: 999, suffix: "+" },
 ];
 
 export const rooms = [

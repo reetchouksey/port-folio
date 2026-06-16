@@ -28,7 +28,7 @@ export default function Achievements() {
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4">
         {stats.map((s, i) => (
           <StatCard key={s.label} stat={s} delay={i * 0.06} />
         ))}
