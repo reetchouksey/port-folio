@@ -105,7 +105,7 @@ export const projects = [
     ],
     color: "from-amber-400 via-amber-700 to-amber-950",
     accent: "bg-amber-100",
-    demo: "https://net-flix-clone-eight-tawny-75.vercel.app/login",
+    demo: "https://net-flix-clone-eight-tawny-75.vercel.app/",
     code: "#",
   },
   {
