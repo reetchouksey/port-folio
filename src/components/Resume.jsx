@@ -59,7 +59,7 @@ const RESUME = {
       period: "Dec 2024 — Present",
       bullets: [
         "Develop responsive, production-ready web interfaces using React.js, Redux, Tailwind CSS, and JavaScript across internal and client-facing projects.",
-        "Built an Employee Management Dashboard, a JobTracker application, a Netflix clone, and a construction-company website end-to-end — from UI layout to API integration.",
+        "Built an Employee Management Dashboard, a Recipe Finder application, a Netflix clone, and a construction-company website end-to-end — from UI layout to API integration.",
         "Translate UI/UX designs into pixel-perfect, reusable React components and integrate REST APIs with clean state management (Redux Toolkit, React Hooks).",
         "Collaborate in a Git/GitHub-based team workflow with code reviews, using AI-assisted tools (Cursor, Antigravity) to speed up development and debugging.",
       ],
@@ -76,10 +76,10 @@ const RESUME = {
       ],
     },
     {
-      title: "JobTracker — Job Application Tracking App",
+      title: "Recipe Finder — Recipe Discovery App",
       bullets: [
-        "Developed a job application tracker in React.js to add, update, and organize applications by status (applied, interviewing, offer, rejected).",
-        "Managed state with Redux and persisted data across sessions; built filtering, sorting, and status-summary views with Tailwind CSS for an at-a-glance pipeline.",
+        "Developed a Recipe Finder web app in React.js that pulls live recipes from TheMealDB API with search by name, ingredient, category, and cuisine.",
+        "Built favorites persisted to localStorage, a drag-and-drop weekly meal planner, and an auto-generated shopping list — styled with Tailwind CSS for a responsive UI.",
       ],
     },
     {
