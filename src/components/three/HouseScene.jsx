@@ -40,7 +40,7 @@ export default function HouseScene({ hovered, onHover, onClick }) {
     <div ref={wrapRef} className="relative w-full h-full">
       <Canvas
         shadows="percentage"
-        dpr={[1, 1.75]}
+        dpr={[1, 1.5]}
         frameloop={visible ? "always" : "never"}
         camera={{ position: [7.5, 7.5, 9.5], fov: 32 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
@@ -71,8 +71,8 @@ function SceneContents({ hovered, onHover, onClick }) {
         intensity={1.3}
         color="#ffd28a"
         castShadow
-        shadow-mapSize-width={768}
-        shadow-mapSize-height={768}
+        shadow-mapSize-width={512}
+        shadow-mapSize-height={512}
         shadow-camera-near={0.5}
         shadow-camera-far={30}
         shadow-camera-left={-10}

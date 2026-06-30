@@ -352,6 +352,31 @@ body {
   .hover\:-translate-y-1:hover {
     transform: none !important;
   }
+  /* Kill every infinite keyframe-based loop on touch devices. These run
+     forever on the compositor thread and were the single biggest source
+     of "hangs" reported on phones — marquee, gradient text, ping dots,
+     and animated blobs all collapse to a static first frame. */
+  .marquee,
+  .animate-blob,
+  .animate-float,
+  .animate-float-slow,
+  .animate-shimmer,
+  .animate-ping,
+  .gradient-text {
+    animation: none !important;
+  }
+}
+
+/* Accessibility opt-out always wins, regardless of input modality. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* When a room is rendered over the scrapbook paper, lift glass-card opacity so

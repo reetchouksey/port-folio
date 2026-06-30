@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -8,13 +8,20 @@ import {
   MousePointerClick,
 } from "lucide-react";
 import { profile, rooms } from "../data/content.js";
-import HouseScene from "./three/HouseScene.jsx";
+import HouseSceneFallback from "./HouseSceneFallback.jsx";
 import RoomMarkers from "./RoomMarkers.jsx";
 import TypingText from "./TypingText.jsx";
 import RoomGlyph from "./icons/RoomGlyphs.jsx";
+import usePerfMode from "../hooks/usePerfMode.js";
+
+// Three.js is ~400 KB after gzip. Only pull it in for hover-capable desktops
+// that pass `usePerfMode` — phones, tablets, and reduced-motion users get
+// the static 2D `HouseSceneFallback` and never download this chunk.
+const HouseScene = lazy(() => import("./three/HouseScene.jsx"));
 
 export default function Hero({ onEnterRoom, onOpenResume }) {
   const [hovered, setHovered] = useState(null);
+  const { lite } = usePerfMode();
 
   return (
     <section
@@ -128,7 +135,9 @@ export default function Hero({ onEnterRoom, onOpenResume }) {
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <span className="relative flex h-2 w-2">
-                    <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-75" />
+                    {!lite && (
+                      <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-75" />
+                    )}
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-600" />
                   </span>
                   Open to Work
@@ -154,11 +163,29 @@ export default function Hero({ onEnterRoom, onOpenResume }) {
               <div className="relative aspect-[4/3] sm:aspect-[6/5] w-full">
                 {/* Cream "showroom stage" */}
                 <div className="absolute inset-0 rounded-2xl sm:rounded-[2rem] overflow-hidden bg-cream-100 border border-ink-200/60 shadow-soft">
-                  <HouseScene
-                    hovered={hovered}
-                    onHover={setHovered}
-                    onClick={onEnterRoom}
-                  />
+                  {lite ? (
+                    <HouseSceneFallback
+                      hovered={hovered}
+                      onHover={setHovered}
+                      onClick={onEnterRoom}
+                    />
+                  ) : (
+                    <Suspense
+                      fallback={
+                        <HouseSceneFallback
+                          hovered={hovered}
+                          onHover={setHovered}
+                          onClick={onEnterRoom}
+                        />
+                      }
+                    >
+                      <HouseScene
+                        hovered={hovered}
+                        onHover={setHovered}
+                        onClick={onEnterRoom}
+                      />
+                    </Suspense>
+                  )}
                   <RoomMarkers
                     hovered={hovered}
                     setHovered={setHovered}
@@ -203,10 +230,16 @@ export default function Hero({ onEnterRoom, onOpenResume }) {
                   </div>
                 </div>
 
-                {/* Editorial floating tags */}
+                {/* Editorial floating tags — animation skipped on touch /
+                    reduced-motion / low-end so we don't burn frames on the
+                    two infinite Y loops below. */}
                 <motion.div
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                  animate={lite ? undefined : { y: [0, -8, 0] }}
+                  transition={
+                    lite
+                      ? undefined
+                      : { duration: 6, repeat: Infinity, ease: "easeInOut" }
+                  }
                   className="absolute -left-3 top-12 hidden sm:flex glass rounded-2xl px-3.5 py-2.5 items-center gap-2"
                 >
                   <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-amber-300 to-rose-400 flex items-center justify-center text-white text-sm font-bold">
@@ -222,8 +255,12 @@ export default function Hero({ onEnterRoom, onOpenResume }) {
                   </div>
                 </motion.div>
                 <motion.div
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                  animate={lite ? undefined : { y: [0, 10, 0] }}
+                  transition={
+                    lite
+                      ? undefined
+                      : { duration: 7, repeat: Infinity, ease: "easeInOut" }
+                  }
                   className="absolute -right-3 bottom-16 hidden sm:flex glass rounded-2xl px-3.5 py-2.5 items-center gap-2"
                 >
                   <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-orange-500 to-amber-700 flex items-center justify-center text-white text-sm font-bold">
@@ -273,6 +310,7 @@ function BigWordmark() {
 
 function ScrollDownIndicator() {
   const [show, setShow] = useState(true);
+  const { lite } = usePerfMode();
   useEffect(() => {
     const onScroll = () => setShow(window.scrollY < 80);
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -286,8 +324,12 @@ function ScrollDownIndicator() {
     >
       <span>Scroll</span>
       <motion.span
-        animate={{ y: [0, 6, 0] }}
-        transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+        animate={lite ? undefined : { y: [0, 6, 0] }}
+        transition={
+          lite
+            ? undefined
+            : { duration: 1.6, repeat: Infinity, ease: "easeInOut" }
+        }
         className="h-6 w-[1.5px] bg-ink-400"
       />
     </motion.div>
